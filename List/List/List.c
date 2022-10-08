@@ -3,8 +3,8 @@
 
 LTNode* ListInit()
 {
-	//´´½¨Ò»¸öÉÚ±øÎ»µÄÍ·½Úµã
-	LTNode* phead = (LTNode*)malloc(sizeof(LTNode*));
+	//åˆ›å»ºä¸€ä¸ªå“¨å…µä½çš„å¤´èŠ‚ç‚¹
+	LTNode* phead = (LTNode*)malloc(sizeof(LTNode));
 	assert(phead);
 	phead->next = phead;
 	phead->prev = phead;
@@ -41,13 +41,13 @@ void ListPushBack(LTNode* phead, SLDataType x)
 	//LTNode* newNode = BuyListNode(x);
 	//LTNode* tail = phead->prev;
 	
-	////Î²²åÒ»¸öÐÂ½Úµã
+	////å°¾æ’ä¸€ä¸ªæ–°èŠ‚ç‚¹
 	
 	// phead  tail  newNode
 	//tail->next = newNode;
 	//newNode->prev = tail;
 
-	////ÐÂ½ÚµãÁ´½ÓÉÚ±øÎ»Í·½Úµã
+	////æ–°èŠ‚ç‚¹é“¾æŽ¥å“¨å…µä½å¤´èŠ‚ç‚¹
 	//newNode->next = phead;
 	//phead->prev = newNode;
 
@@ -73,7 +73,7 @@ void ListPushFront(LTNode* phead, SLDataType x)
 void ListPopBack(LTNode* phead)
 {
 	assert(phead);
-	//Á´±íÎª¿ÕÊ±£¬²»ÄÜÉ¾³ýÁË
+	//é“¾è¡¨ä¸ºç©ºæ—¶ï¼Œä¸èƒ½åˆ é™¤äº†
 	assert(phead->next != phead);
 	//LTNode* tail = phead->prev;
 	//LTNode* tailPrev = tail->prev;
@@ -87,7 +87,7 @@ void ListPopBack(LTNode* phead)
 void ListPopFront(LTNode* phead)
 {
 	assert(phead);
-	//Á´±íÎª¿Õ
+	//é“¾è¡¨ä¸ºç©º
 	assert(phead->next != phead);
 
 	//LTNode* next = phead->  next;
@@ -154,5 +154,6 @@ void ListDestroy(LTNode* phead)
 		cur = next;
 	}
 	free(phead);
+	phead=NULL;
 
 }
