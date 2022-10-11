@@ -17,7 +17,7 @@ void StackDestroy(ST* ps);
 void StackPush(ST* ps, STDataType x);
 void StackPop(ST* ps);
 
-//·µ»ØÕ»¶¥µÄÊı¾İ
+//è¿”å›æ ˆé¡¶çš„æ•°æ®
 STDataType StackTop(ST* ps);
 bool StackEmpty(ST* ps);
 int StackSize(ST* ps);
