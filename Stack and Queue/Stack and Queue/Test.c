@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include"Stack.h"
+#include"Queue.h"
 
 void TestStack()
 {
@@ -28,8 +29,40 @@ void TestStack()
 	StackDestroy(&stack);
 }
 
+void TestQueue()
+{
+	Queue q;
+	QueueInit(&q);
+
+	QueuePush(&q, 1);
+	QueuePush(&q, 2);
+	QueuePush(&q, 3);
+	QueuePush(&q, 4);
+	QDataType front = QueueFront(&q);
+	printf("%d\n", front);
+	QueuePop(&q);
+	//QueuePop(&q);
+	//QueuePop(&q);
+	//QueuePop(&q);
+	//QueuePop(&q);
+	//QueuePop(&q);
+	//printf("%d ", QueueFront(&q));
+	////printf("%d ", QueueBack(&q));
+	//printf("%d ", QueueSize(&q));
+
+	//´òÓ¡Êý¾Ý
+	while (!QueueEmpty(&q))
+	{
+		QDataType front = QueueFront(&q);
+		printf("%d ", front);
+		QueuePop(&q);
+	}
+	printf("\n");
+	QueueDestroy(&q);
+}
 int main()
 {
-	TestStack();
+	//TestStack();
+	TestQueue();
 	return 0;
 }
