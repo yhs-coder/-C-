@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<assert.h>
+#include<stdbool.h>
 
 
 typedef char BTDataType;  //结点中存储的元素类型
@@ -30,3 +31,20 @@ void BinaryLevelOrder(BTNode* root);
 //结点的个数
 int BinaryTreeNum(BTNode* root);
 
+//叶子结点的个数
+int BinaryTreeLeafNum(BTNode* root);
+
+//相对于根结点，第k层结点的个数
+int BinaryTreeKLevelNum(BTNode* root, int k);
+
+//树的最大深度
+int BinaryTreeMaxDepth(BTNode* root);
+
+//翻转二叉树
+BTNode* invertTree(BTNode* root);
+
+//判断两棵二叉树是否为相同
+bool isSameTree(BTNode* p, BTNode* q);
+
+//判断二叉树是否为完全二叉树
+bool isCompleteTree(BTNode* root);
