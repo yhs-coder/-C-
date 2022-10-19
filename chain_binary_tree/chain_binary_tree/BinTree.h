@@ -48,3 +48,19 @@ bool isSameTree(BTNode* p, BTNode* q);
 
 //判断二叉树是否为完全二叉树
 bool isCompleteTree(BTNode* root);
+
+//判断二叉树是否是单值二叉树
+bool isUnivalTree(BTNode* root);
+
+
+//判断二叉树是否是对称二叉树
+bool isSymmetricTree(BTNode* root);
+
+//判断二叉树是否是平衡二叉树
+bool isBalancedTree(BTNode* root);
+
+//判断二叉树是否是另一棵二叉树的子树
+bool Compare(BTNode* root, BTNode* subRoot);
+
+//二叉树的销毁
+void BinaryTreeDestroy(BTNode* root);
