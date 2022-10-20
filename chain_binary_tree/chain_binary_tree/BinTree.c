@@ -74,7 +74,6 @@ void BinaryLevelOrder(BTNode* root)
 		QueuePop(&q);//再删除对头元素
 	}
 	QueueDestroy(&q);//销毁队列
-
 }
 
 int BinaryTreeNum(BTNode* root)
@@ -104,7 +103,7 @@ int BinaryTreeLeafNum(BTNode* root)
 	if (root == NULL)
 		return 0;
 
-	//是叶子结点就返回1
+	//如果左右子树都为空，则为叶子结点，返回1
 	if (root->left == NULL && root->right == NULL)
 		return 1;
 
@@ -396,6 +395,42 @@ bool isBalancedTree(BTNode* root)
 	return _isBlancedtree(root, &hight);
 }
 
+//比较以root和subRoot为根结点的两棵树是否相等
+bool Compare(BTNode* root, BTNode* subRoot)
+{
+	if (root == NULL && subRoot == NULL)//均为空树，相等
+		return true;
+	if (root == NULL || subRoot == NULL) //其中一棵为空树
+		return false;
+	if (root->data != subRoot->data) //结点不相同
+		return false;
+
+	//比较两棵树的子结点
+	return Compare(root->left, subRoot->left) && Compare(root->right, subRoot->right);
+}
+bool isSubtree(BTNode* root, BTNode* subRoot)
+{
+
+	/*
+	* 思路：
+		依次判断以 root 中某一个结点为根的子树是否与subRoot相同。
+		当发现 root 中的某一个子树与 subRoot 相匹配时，便不再继续比较其他子树.
+	*/
+
+	//如果匹配到最后root为空（说明前面结点为根的子树的结构不与subRoot相同），subRoot非空，则该树的子树不包含subRoot
+	if (root == NULL)  
+		return false; 
+
+	//比较以root和subRoot为根结点的两棵树是否相等
+	if (Compare(root, subRoot))
+		return true;
+
+	//判断root的左右孩子是否有一棵子树和subRoot相同！
+	return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+}
+
+
+
 void BinaryTreeDestroy(BTNode* root)
 {
 	//采用后序，一边遍历一边销毁
@@ -406,3 +441,27 @@ void BinaryTreeDestroy(BTNode* root)
 	free(root);//释放根节点
 	root = NULL;
 }
+
+BTNode* BinaryTreeFind(BTNode* root, BTDataType x)
+{
+	if (root == NULL) //空树
+		return NULL;
+	if (root->data == x) //判断根结点是不是要查找的值
+		return root;
+	BTNode* lret = BinaryTreeFind(root->left, x);//在左子树查找
+	if (lret)
+		return lret;
+
+	BTNode* rret = BinaryTreeFind(root->right, x);//在右子树查找
+	if (rret)
+		return rret;
+	return NULL;
+//	if (left == NULL && right == NULL)
+//		return NULL;
+//	if (left || right)
+//		return left == NULL ? right : left;
+}
+
+
+
+

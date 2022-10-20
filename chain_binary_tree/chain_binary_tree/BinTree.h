@@ -37,6 +37,9 @@ int BinaryTreeLeafNum(BTNode* root);
 //相对于根结点，第k层结点的个数
 int BinaryTreeKLevelNum(BTNode* root, int k);
 
+//查找值为x的结点
+BTNode* BinaryTreeFind(BTNode* root, BTDataType x);
+
 //树的最大深度
 int BinaryTreeMaxDepth(BTNode* root);
 
@@ -60,7 +63,7 @@ bool isSymmetricTree(BTNode* root);
 bool isBalancedTree(BTNode* root);
 
 //判断二叉树是否是另一棵二叉树的子树
-bool Compare(BTNode* root, BTNode* subRoot);
+bool isSubtree(BTNode* root, BTNode* subRoot);
 
 //二叉树的销毁
 void BinaryTreeDestroy(BTNode* root);
