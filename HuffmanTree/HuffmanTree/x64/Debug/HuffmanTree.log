@@ -1,0 +1,7 @@
+﻿  HuffmanTree.c
+D:\代码库\数据结构\HuffmanTree\HuffmanTree\HuffmanTree.c(108,36): warning C4244: “函数”: 从“DataType”转换到“size_t”，可能丢失数据
+D:\代码库\数据结构\HuffmanTree\HuffmanTree\HuffmanTree.c(116,43): warning C4244: “函数”: 从“DataType”转换到“size_t”，可能丢失数据
+D:\代码库\数据结构\HuffmanTree\HuffmanTree\HuffmanTree.c(129,14): warning C4244: “=”: 从“DataType”转换到“int”，可能丢失数据
+D:\代码库\数据结构\HuffmanTree\HuffmanTree\HuffmanTree.c(147,38): warning C4244: “函数”: 从“DataType”转换到“size_t”，可能丢失数据
+D:\代码库\数据结构\HuffmanTree\HuffmanTree\HuffmanTree.c(122,16): warning C4244: “初始化”: 从“DataType”转换到“int”，可能丢失数据
+  HuffmanTree.vcxproj -> D:\代码库\数据结构\HuffmanTree\x64\Debug\HuffmanTree.exe
