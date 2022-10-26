@@ -5,20 +5,22 @@
 #include<string.h>
 
 
-typedef double DataType; //½áµãÈ¨ÖµµÄÊı¾İÀàĞÍ
+typedef double DataType; //ç»“ç‚¹æƒå€¼çš„æ•°æ®ç±»å‹
 
-typedef struct HTNode // µ¥¸ö½áµãµÄĞÅÏ¢
+typedef struct HTNode // å•ä¸ªç»“ç‚¹çš„ä¿¡æ¯
 {
-	DataType weight;	//È¨Öµ
-	int parent;	//¸¸½Úµã
-	int lc, rc;	//×óÓÒº¢×Ó
+	DataType weight;	//æƒå€¼
+	int parent;	//çˆ¶èŠ‚ç‚¹
+	int lc, rc;	//å·¦å³å­©å­
 }HTNode,* HuffmanTree;
 
-typedef char**  HuffmanCode; //¶ş¼¶×Ö·ûÖ¸Õë´æ´¢µÄÔªËØÀàĞÍ
+typedef char**  HuffmanCode; //äºŒçº§å­—ç¬¦æŒ‡é’ˆå­˜å‚¨çš„å…ƒç´ ç±»å‹
 
-//ÔÚÏÂ±êÎª1µ½i-1µÄ·¶Î§ÕÒµ½È¨Öµ×îĞ¡µÄÁ½¸öÖµÏÂ±ê£¬ÆäÖĞs1µÄÈ¨ÖµĞ¡ÓÚs2µÄÈ¨Öµ
+//åœ¨ä¸‹æ ‡ä¸º1åˆ°i-1çš„èŒƒå›´æ‰¾åˆ°æƒå€¼æœ€å°çš„ä¸¤ä¸ªå€¼ä¸‹æ ‡ï¼Œå…¶ä¸­s1çš„æƒå€¼å°äºs2çš„æƒå€¼
 void Select(HuffmanTree* HT, int n, int* s1, int* s2);
 
+//åˆ›å»ºå“ˆå¤«æ›¼æ ‘
 void CreateHuffmanTree(HuffmanTree* HT, DataType* w, int n);
 
+//ç”Ÿæˆå“ˆå¤«æ›¼ç¼–ç 
 void HuffmanCoding(HuffmanTree HT, HuffmanCode* HC, int n);
