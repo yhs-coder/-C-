@@ -102,18 +102,20 @@ void CreateHuffmanTree(HuffmanTree* HT, DataType* w,int n)
 
 
 
-void HuffmanCoding(HuffmanTree HT, HuffmanCode* HC, DataType n)
+void HuffmanCoding(HuffmanTree HT, HuffmanCode* HC, int n)
 {
-	//开n+1个空间，因为下标为0的空间不用
-	HC = (char**)malloc(sizeof(char*) * (n + 1));
-	if (HC == NULL)
+	//HuffmanCoding(HT, &HCO, n);
+
+	//根据下标，开n+1个空间，用于存储n个数据的哈夫曼编码，注意：下标为0的空间不用
+	*HC = (HuffmanCode*)malloc(sizeof(char*) * (n + 1));
+	if (*HC == NULL)
 	{
 		printf("malloc fail\n");
 		exit(-1);
 	}
 
 	//辅助空间，编码最长为n,前n-1个用于存储编码，最后一个用于存放'\0'
-	char* code = (char*)malloc(sizeof(char*) * n);
+	char* code = (char*)malloc(sizeof(char) * n);
 	if (code == NULL)
 	{
 		printf("malloc fail\n");
@@ -122,16 +124,16 @@ void HuffmanCoding(HuffmanTree HT, HuffmanCode* HC, DataType n)
 	int start = n - 1;
 	code[start] = '\0';
 
-	//生成哈夫曼编码
+	//依次生成每个数据的哈夫曼编码
 	for (int i = 1; i <= n; i++)
 	{
-		//每次生成数据的哈夫曼编码之前，先将start指针指向'\0'
-		 start = n - 1;
-		int c = i;//正在进行的第i个数据的编码
-		int p = HT[i].parent;//找到该数据的父结点
+		
+		start = n - 1; 	//每次生成数据的哈夫曼编码之前，先将start指针指向'\0'
+		int c = i;//找到第i个数据 （i是数组里数据对应的下标）
+		int p = HT[c].parent;//找到该数据的父结点
 		while (p) //直至父结点为0，即父结点为根结点时停止
 		{
-			if (HT[i].lc == c)//如果该结点时其父结点的左孩子，则编码为0，否则为1
+			if (HT[p].lc == c)//如果该结点是父结点的左孩子，则编码为0，否则为1
 			{
 				code[--start] = '0';
 			}
@@ -139,17 +141,21 @@ void HuffmanCoding(HuffmanTree HT, HuffmanCode* HC, DataType n)
 			{
 				code[--start] = '1';
 			}
-			c = p;//继续往上继续编码
+			c = p;//继续往上比较，生成编码
 			p = HT[c].parent; //c的父节点
 		}
 
-		//开辟用于存储编码的内存空间
-		HC[i] = (char*)malloc(sizeof(char) * (n - start));
-		if (HC[i] == NULL)
+	
+		//char** HC;HC[i]=*(HC+1);//一级字符指针
+		//在字符指针数组（二级字符指针）里，对应下标开辟空间，用于存储第i个数据的编码
+		(*HC)[i] = (char*)malloc(sizeof(char) * (n - start));
+		if ((*HC)[i] == NULL)
 		{
 			exit(-1);
 		}
-		strcpy(HC[i], & code[start]);
+
+		//从start位置开始code里面的编码，拷贝一份给字符指针数组
+		strcpy((*HC)[i], &code[start]);
 	}
 	free(code);//释放空间
 }

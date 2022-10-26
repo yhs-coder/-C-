@@ -9,6 +9,7 @@ int main()
 	scanf("%d", &n);
 
 	//w为存放权值的元素
+
 	DataType* w = (DataType*)malloc(sizeof(DataType) * n);
 
 	if (w == NULL)
@@ -25,24 +26,13 @@ int main()
 	CreateHuffmanTree(&HT, w, n);//构建哈夫曼树
 
 	//构建哈夫曼编码
-	HuffmanCode HC = NULL;
-	HuffmanCoding(HT, &HC, n);
-	for (int i = 0; i <= n; i++)//打印哈夫曼编码
+	HuffmanCode HCO = NULL;
+	HuffmanCoding(HT, &HCO, n);
+	for (int i = 1; i <= n; i++)//打印哈夫曼编码
 	{
-		printf("数据%.2lf的编码为:%s\n", HT[i].weight, HC[i]);
+		printf("数据%.2lf的编码为:%s\n", HT[i].weight, HCO[i]);
 	}
 	free(w);
-
-	//HuffmanTree HT=(HuffmanTree)malloc(sizeof(HuffmanTree));
-	//if (HT == NULL)
-	//{
-	//	printf("haha\n");
-	//	exit(-1);
-	//}
-	//HT->lc = 10;
-	//HT->rc = 20;
-	//HT->parent = 30;
-	//printf("%d %d %d ", HT->lc, HT->rc, HT->parent);
 	
 	
 	return 0;
