@@ -17,8 +17,27 @@ void TestQuickSort()
 	QuickSort(a, 0, n - 1);
 	PrintArray(a, n);
 }
+
+void TestInsertSort()
+{
+	int a[] = { 49,38,65,97,76,13,27,49 };
+	int n = sizeof(a) / sizeof(a[0]);
+	InsertSort(a, n);
+	PrintArray(a, n);
+
+}
+
+void TestShellSort()
+{
+	int a[] = { 49,38,65,97,76,13,27,49 };
+	int n = sizeof(a) / sizeof(a[0]);
+	ShellSort(a, n);
+	PrintArray(a, n);
+}
 int main()
 {
-	TestQuickSort();
+	//TestQuickSort();
+	//TestInsertSort();
+	TestShellSort();
 	return 0;
 }
