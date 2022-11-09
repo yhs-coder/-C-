@@ -45,18 +45,54 @@ void TestShellSort()
 	PrintArray(a, n);
 }
 
-
+void TestMergeSort()
+{
+	int a[] = { 10,6,7,1,3,9,4,2,8};
+	int n = sizeof(a) / sizeof(a[0]);
+	MergeSort(a, n);
+	PrintArray(a, n);
+}
 
 void TestOP()
 {
 	srand(time(0));
-	const int N = 100000;
+	const int N = 10000;
 	int* a1 = (int*)malloc(sizeof(int) * N);
+	if (a1 == NULL)
+	{
+		printf("malloc fail!\n");
+		exit(-1);
+	}
 	int* a2 = (int*)malloc(sizeof(int) * N);
+	if (a2 == NULL)
+	{
+		printf("malloc fail!\n");
+		exit(-1);
+	}
 	int* a3 = (int*)malloc(sizeof(int) * N);
+	if (a3 == NULL)
+	{
+		printf("malloc fail!\n");
+		exit(-1);
+	}
 	int* a4 = (int*)malloc(sizeof(int) * N);
+	if (a4 == NULL)
+	{
+		printf("malloc fail!\n");
+		exit(-1);
+	}
 	int* a5 = (int*)malloc(sizeof(int) * N);
+	if (a5 == NULL)
+	{
+		printf("malloc fail!\n");
+		exit(-1);
+	}
 	int* a6 = (int*)malloc(sizeof(int) * N);
+	if (a6 == NULL)
+	{
+		printf("malloc fail!\n");
+		exit(-1);
+	}
 	//int* a7 = (int*)malloc(sizeof(int) * N);
 
 	for (int i = 0; i < N; i++)
@@ -74,7 +110,7 @@ void TestOP()
 	int end1 = clock();
 
 	int begin2 = clock();
-	//ShellSort(a1, N);
+	ShellSort(a1, N);
 	int end2 = clock();
 
 	int begin3 = clock();
@@ -88,18 +124,17 @@ void TestOP()
 	int begin5 = clock();
 	//QuickSortNonR(a5,0,N-1);
 	QuickSort1(a5, 0, N - 1);
-
 	int end5 = clock();
 
 	int begin6 = clock();
 	//MergeSort(a1, N);
 	int end6 = clock();
 	printf("InsertSort:%d\n", end1 - begin1);
-	//printf("ShellSort:%d\n", end2 - begin2);
-	//printf("SelectSort:%d\n", end3 - begin3);
-	//printf("HeapSort:%d\n", end4 - begin4);
+	printf("ShellSort:%d\n", end2 - begin2);
+	printf("SelectSort:%d\n", end3 - begin3);
+	printf("HeapSort:%d\n", end4 - begin4);
 	printf("QuickSort:%d\n", end5 - begin5);
-	//printf("MergeSort:%d\n", end6 - begin6);
+	printf("MergeSort:%d\n", end6 - begin6);
 
 	free(a1);
 	free(a2);
@@ -116,6 +151,7 @@ int main()
 	//TestInsertSort();
 	//TestShellSort();
 
-	TestOP();
+	//TestOP();
+	TestMergeSort();
 	return 0;
 }

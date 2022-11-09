@@ -160,7 +160,7 @@ void QuickSort1(int* a, int  begin, int end)
 	
 	//小区间优化
 	//左区间进行优化
-	if (meeti - 1 - left > 10)
+	if (meeti - 1 - left > 13)
 		QuickSort1(a, begin, meeti - 1); //对key的左序列进行此操作
 	else
 		InsertSort(a + left, meeti - 1 - left + 1);
@@ -432,6 +432,8 @@ void QuickSortNonR(int* a, int  begin, int end)
 		Swap(&a[left], &a[mid]);
 
 		//进行单趟排序
+		//int keyIndex = PartSort1(a, left, right);
+		//int keyIndex = PartSort2(a, left, right);
 		int keyIndex=PartSort3(a, left, right);
 
 
@@ -468,4 +470,63 @@ void QuickSortNonR(int* a, int  begin, int end)
 	}
 	StackDestroy(&st); //销毁栈
 
+}
+
+void _MergeSort(int* a, int left, int right, int* tmp)
+{
+	if (left >= right) //递归停止条件：当序列只有一个元素或者序列不存在，则无需再分解
+		return;
+
+	//分解
+	//int mid = (left + right) >> 1;
+	int mid = left+(right - left) / 2; //中间下标，记得加left！！如果没加，当为右区间2-3时，（right-left）/2=0,那么中间下标就是0,乱套了。
+	//不断分解成左右两个区间，直到序列里只有一个元素
+	_MergeSort(a, left, mid, tmp); //对左序列进行归并
+	_MergeSort(a, mid + 1, right, tmp);//对右序列进行归并
+
+	//合并,即归并
+	//左、右区间的范围
+	int begin1 = left, end1 = mid;
+	int begin2 = mid + 1, end2 = right;
+	int i = left; //左区间的初始位置开始
+	while (begin1 <= end1 && begin2 <= end2)
+	{
+		//将较小值拷贝到tmp中
+		if (a[begin1] < a[begin2])
+			tmp[i++] = a[begin1++];
+		else
+			tmp[i++] = a[begin2++];
+
+	}
+	//当遍历排序完其中一个分组后，当另一分组的剩余元素拷贝到tmp后面
+	while (begin1 <= end1)
+		tmp[i++] = a[begin1++];
+	while(begin2<=end2)
+		tmp[i++] = a[begin2++];
+
+	//两组数组归并完后，将tmp的数据拷回到原数组中
+	
+	int j = 0;
+	for (j = left; j <= right; j++)
+	{
+		a[j] = tmp[j];
+	}
+	//while (--i>=left)
+	//{
+	//	a[i++] = tmp[i++];
+	//}
+}
+
+void MergeSort(int* a, int n)
+{
+	//创建一个与a大小相等的临时数组
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL)
+	{
+		printf("malloc fail\n");
+		exit(-1);
+	}
+	//调用子函数
+	_MergeSort(a, 0, n - 1, tmp);
+	free(tmp);//释放动态开辟的内存空间
 }
