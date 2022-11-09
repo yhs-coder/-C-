@@ -33,15 +33,19 @@ int GetMidIndex(int* a, int left, int right);
 //快速排序的非递归实现
 //三种方法的单趟排序封装
 
-//挖坑法
+//1.挖坑法
 int PartSort1(int* a, int left, int right);
-//左右指针法
+//2.左右指针法
 int PartSort2(int* a, int left, int right);
-//前后指针法
+//3.前后指针法
 int PartSort3(int* a, int left, int right);
-
+//快速排序的非递归实现
 void QuickSortNonR(int* a, int  begin, int end);
 
+//归并排序(递归实现）
+void MergeSort(int* a, int n);
+//归并排序子函数
+void _MergeSort(int* a,int left, int right, int* tmp);
 
 
 
